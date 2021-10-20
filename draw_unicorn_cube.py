@@ -136,8 +136,8 @@ def main():
 
         # glTranslatef(0.0, 0.0, 1.0)
         # glTranslatef(0.0, 0.0, .50)
-        # glRotatef(1, 0, 1, 0)
-        glRotatef(0, 0, 0, 0)
+        glRotatef(1, 0, 1, 0)
+        #glRotatef(0, 0, 0, 0)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         for each_cube in cube_dict:
             Cube(cube_dict[each_cube])
