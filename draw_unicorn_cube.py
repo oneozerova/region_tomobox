@@ -1,5 +1,3 @@
-import math
-import random
 from pygame.locals import *
 
 import pygame
@@ -56,9 +54,9 @@ edges = (
 
 
 def set_vertices(x):
-    x_value_change = position[x][0] - 40
+    x_value_change = position[x][0] - 40  # define central gravity (-40)
     y_value_change = position[x][1] - 40
-    z_value_change = 30
+    z_value_change = 25
 
     new_vertices = []
 
@@ -119,7 +117,7 @@ def main():
     pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
 
     gluPerspective(100, (display[0] / display[1]), 0.1, 50.0)
-    # glTranslatef(5.0, 5.0, -30) x and y !!! HERE
+    # glTranslatef(-10.0, 10.0, -60)# x and y !!! HERE
     glTranslatef(-4.0, -4.0, -60)
     # glRotatef(0, 0, 0, 0)
 
@@ -127,6 +125,8 @@ def main():
 
     for x in range(len(position)):
         cube_dict[x] = set_vertices(x)
+    print("x", x)
+    print(cube_dict[0])
 
     while True:
         for event in pygame.event.get():
@@ -137,14 +137,15 @@ def main():
         # glTranslatef(0.0, 0.0, 1.0)
         # glTranslatef(0.0, 0.0, .50)
         glRotatef(1, 0, 1, 0)
-        #glRotatef(0, 0, 0, 0)
+        # glRotatef(0, 0, 0, 0)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         for each_cube in cube_dict:
             Cube(cube_dict[each_cube])
         Main_cube()
-        # glTranslatef(5.0, 5.0, 0.0)
+        # glTranslatef(5.0, 5.0, -200)
         pygame.display.flip()
         pygame.time.wait(10)
 
 
 main()
+

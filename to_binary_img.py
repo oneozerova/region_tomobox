@@ -1,4 +1,15 @@
+from PIL import Image
 
+im = Image.open(r"unicorn_other_side(frame152).jpg")
+px = im.load()
+for x in range(im.width):
+    for y in range(im.height):
+        if sum(px[x, y]) > 80*3:
+            px[x, y] = (255, 255, 255)
+        else:
+            px[x, y] = (0, 0, 0)
+
+im.save("unicorn_other_side.out.jpg")
 
 """import os
 

@@ -17,11 +17,9 @@ from OpenGL.GLU import *
 import cv2
 
 img_arr = cv2.imread('80p_unicorn.jpg', 1)
+#img_arr2 = cv2.imread('80p_unicorn2.jpg', 1)
+img_arr4 = cv2.imread('80p_unicorn_other_side.jpg', 1)
 
-"""imgArray = numpy.array(img_resized) 
-cv2.imwrite("test.png",imgArray)
-#converts array to image again
-"""
 
 vertices = (
     (1, -1, -1),
@@ -68,25 +66,29 @@ pixel_num = 1
 
 for string in img_arr:
     for pixel in string:
-        if int(int(pixel[0])+int(pixel[1])+int(pixel[2])) != 0:
-            position.append([pixel_num//string_num+pixel_num, string_num])
-            print(pixel_num//string_num+pixel_num, string_num) #x and y
+        if int(int(pixel[0])+int(pixel[1])+int(pixel[2])) >= 90: #define sharpness (>=100)
+            position.append([pixel_num//string_num+pixel_num, string_num, 1])
+            #print(pixel_num//string_num+pixel_num, string_num) #x and y
+        pixel_num += 1
+    string_num += 1
+    pixel_num = 1
+#print(img_arr)
+
+for string in img_arr4:
+    for pixel in string:
+        if int(int(pixel[0])+int(pixel[1])+int(pixel[2])) >= 90: #define sharpness (>=100)
+            position.append([pixel_num//string_num+pixel_num, string_num, 4])
+            #print(pixel_num//string_num+pixel_num, string_num) #x and y
         pixel_num += 1
     string_num += 1
     pixel_num = 1
 
-def Main_cube():
-    glBegin(GL_QUADS)
-    for surface in surfaces:
-        glColor3fv((1, 1, 1))
-        for vertex in surface:
-            glVertex3fv(vertices[vertex])
-    glEnd()
+"""for string in img_arr2:
+    for pixel in string:
+        if int(int(pixel[0])+int(pixel[1])+int(pixel[2])) >= 90: #define sharpness (>=100)
+            position.append([pixel_num//string_num+pixel_num, string_num, 2])
+            #print(pixel_num//string_num+pixel_num, string_num) #x and y
+        pixel_num += 1
+    string_num += 1
+    pixel_num = 1"""
 
-    glBegin(GL_LINES)
-    for edge in edges:
-        for vertex in edge:
-            glVertex3fv(vertices[vertex])
-
-    glEnd()
-print(position)
